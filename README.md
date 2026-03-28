@@ -2,7 +2,7 @@
 
 ### The ultimate prompt library for AI coding tools — 76 production-grade system prompts to supercharge your development workflow.
 
-[![Stars](https://img.shields.io/github/stars/your-username/awesome-ai-dev-prompts?style=social)](#-star-this-repo)
+[![Stars](https://img.shields.io/github/stars/piyushrajyadav/awesome-ai-dev-prompts?style=social)](#-star-this-repo)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-contribute)
 
 > **One prompt. Expert-level AI coding.** Copy a prompt, paste it into your AI tool, and your assistant becomes a top 1% specialist engineer — instantly.
