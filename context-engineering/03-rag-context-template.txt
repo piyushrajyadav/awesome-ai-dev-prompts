@@ -1,0 +1,192 @@
+================================================================================
+PROMPT NAME: RAG Context Template
+DESCRIPTION: Template for structuring retrieved context in RAG (Retrieval
+Augmented Generation) systems to maximize relevance and minimize noise.
+USE CASES:
+  - Building RAG applications
+  - Integrating vector search with LLMs
+  - Question answering over documents
+  - Code search and generation
+================================================================================
+
+<rag_architecture>
+COMPONENTS:
+1. Retrieval: Find relevant documents/chunks
+2. Ranking: Order by relevance
+3. Context Assembly: Format for LLM
+4. Generation: LLM produces answer using context
+5. Citation: Link answer back to sources
+
+RETRIEVAL STRATEGIES:
+- Dense retrieval (vector similarity)
+- Sparse retrieval (keyword/BM25)
+- Hybrid (combine both)
+- Reranking (improve initial results)
+</rag_architecture>
+
+<context_template>
+BASIC RAG PROMPT STRUCTURE:
+```
+<retrieved_context>
+[Source 1 - Relevance: 0.95]
+Title: [document title]
+Content: [relevant chunk]
+Metadata: [date, author, etc.]
+
+[Source 2 - Relevance: 0.87]
+Title: [document title]
+Content: [relevant chunk]
+Metadata: [date, author, etc.]
+
+[Source 3 - Relevance: 0.82]
+Title: [document title]
+Content: [relevant chunk]
+Metadata: [date, author, etc.]
+</retrieved_context>
+
+<instructions>
+Answer the following question using ONLY the information provided in the
+retrieved context above. If the context doesn't contain enough information
+to answer fully, say so. Cite sources by number [1], [2], [3].
+</instructions>
+
+<question>
+[User's question]
+</question>
+
+<answer>
+[LLM generates answer here with citations]
+</answer>
+```
+</context_template>
+
+<chunking_strategies>
+FIXED-SIZE CHUNKS:
+- Split documents into N tokens/characters
+- Simple but may break semantic units
+- Typical size: 500-1000 tokens with 100-200 overlap
+
+SEMANTIC CHUNKS:
+- Split by paragraphs, sections, or sentences
+- Preserves meaning but variable size
+- Better for coherent retrieval
+
+SLIDING WINDOW:
+- Overlapping chunks to preserve context
+- Ensures no information lost at boundaries
+- Increases storage but improves recall
+
+HIERARCHICAL CHUNKS:
+- Parent chunks (full section)
+- Child chunks (paragraphs)
+- Retrieve child, provide parent as context
+</chunking_strategies>
+
+<metadata_enrichment>
+INCLUDE WITH EACH CHUNK:
+- Source document title/URL
+- Section/chapter heading
+- Author and date
+- Document type (code, docs, blog)
+- Relevance score
+- Chunk position in document
+
+BENEFITS:
+- LLM can assess source credibility
+- User can verify information
+- Enables filtering by metadata
+- Improves citation quality
+</metadata_enrichment>
+
+<advanced_rag_patterns>
+MULTI-QUERY RAG:
+- Generate multiple search queries from user question
+- Retrieve for each query
+- Combine and deduplicate results
+
+ITERATIVE RAG:
+- Retrieve initial context
+- Generate partial answer
+- Identify gaps
+- Retrieve additional context
+- Refine answer
+
+HYPOTHETICAL DOCUMENT EMBEDDINGS (HyDE):
+- Generate hypothetical answer
+- Embed hypothetical answer
+- Search for similar real documents
+- Use real documents to generate actual answer
+
+SELF-RAG:
+- Retrieve context
+- Generate answer
+- Self-critique answer quality
+- Retrieve more if needed
+- Refine answer
+</advanced_rag_patterns>
+
+<quality_optimization>
+IMPROVE RETRIEVAL:
+- Better embeddings (fine-tuned models)
+- Hybrid search (vector + keyword)
+- Query expansion
+- Reranking with cross-encoder
+
+IMPROVE CONTEXT:
+- Remove redundant chunks
+- Order by relevance (most relevant first)
+- Limit to top K chunks (typically 3-5)
+- Include metadata for credibility
+
+IMPROVE GENERATION:
+- Clear instructions to use only provided context
+- Request citations
+- Ask to acknowledge uncertainty
+- Penalize hallucination
+</quality_optimization>
+
+<output_format>
+```
+RAG SYSTEM CONFIGURATION
+=========================
+
+RETRIEVAL:
+- Method: [dense / sparse / hybrid]
+- Embedding Model: [model name]
+- Top K: [number of chunks retrieved]
+- Similarity Threshold: [minimum score]
+
+CHUNKING:
+- Strategy: [fixed / semantic / sliding]
+- Chunk Size: [tokens]
+- Overlap: [tokens]
+
+CONTEXT ASSEMBLY:
+- Max Context Tokens: [limit]
+- Ordering: [by relevance / by document order]
+- Metadata Included: [yes/no and what]
+
+GENERATION:
+- Model: [LLM name]
+- Temperature: [value]
+- Citation Required: [yes/no]
+- Max Output Tokens: [limit]
+
+EXAMPLE PROMPT:
+[Show complete RAG prompt with retrieved context]
+```
+</output_format>
+
+<evaluation_metrics>
+RETRIEVAL QUALITY:
+- Recall@K: % of relevant docs in top K
+- Precision@K: % of top K that are relevant
+- MRR (Mean Reciprocal Rank): position of first relevant doc
+
+GENERATION QUALITY:
+- Answer accuracy
+- Citation accuracy
+- Hallucination rate
+- Answer completeness
+- Latency (retrieval + generation time)
+</evaluation_metrics>

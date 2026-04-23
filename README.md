@@ -1,6 +1,6 @@
 #  Awesome AI Dev Prompts
 
-### The ultimate prompt library for AI coding tools — 76 production-grade system prompts to supercharge your development workflow.
+### The ultimate prompt library for AI coding tools — 111 production-grade system prompts to supercharge your development workflow.
 
 [![Stars](https://img.shields.io/github/stars/piyushrajyadav/awesome-ai-dev-prompts?style=social)](#-star-this-repo)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-contribute)
@@ -41,7 +41,7 @@ AI coding tools like Cursor, Copilot, and Claude are powerful — but most devel
 - ❌ Designing distributed systems and microservices with AI
 - ❌ Getting consistent, expert-level output from AI coding assistants
 
-**This repository solves that.** It provides **76 curated, battle-tested system prompts** that transform any AI coding tool into a domain-specific expert engineer. Each prompt encodes deep engineering knowledge — architecture patterns, coding standards, best practices, and real-world constraints — so you get senior-engineer-level output every time.
+**This repository solves that.** It provides **111 curated, battle-tested system prompts** that transform any AI coding tool into a domain-specific expert engineer. Each prompt encodes deep engineering knowledge — architecture patterns, coding standards, best practices, and real-world constraints — so you get senior-engineer-level output every time.
 
 Stop writing mediocre prompts. Start building faster with AI developer tools.
 
@@ -199,6 +199,56 @@ Stop writing mediocre prompts. Start building faster with AI developer tools.
 | Android Engineer | `mobile/03-android-engineer.txt` |
 | iOS Engineer | `mobile/04-ios-engineer.txt` |
 
+### 🤖 Agent Workflows (15 Prompts)
+
+| Prompt | File |
+|--------|------|
+| Debugging Agent | `agent-workflows/01-debugging-agent.txt` |
+| SaaS Builder Agent | `agent-workflows/02-saas-builder-agent.txt` |
+| Code Review Agent | `agent-workflows/03-code-review-agent.txt` |
+| Research Agent | `agent-workflows/04-research-agent.txt` |
+| Testing Agent | `agent-workflows/05-testing-agent.txt` |
+| Refactoring Agent | `agent-workflows/06-refactoring-agent.txt` |
+| Deployment Agent | `agent-workflows/07-deployment-agent.txt` |
+| Documentation Agent | `agent-workflows/08-documentation-agent.txt` |
+| Database Migration Agent | `agent-workflows/09-database-migration-agent.txt` |
+| Performance Optimization Agent | `agent-workflows/10-performance-optimization-agent.txt` |
+| Security Audit Agent | `agent-workflows/11-security-audit-agent.txt` |
+| API Integration Agent | `agent-workflows/12-api-integration-agent.txt` |
+| Monitoring Agent | `agent-workflows/13-monitoring-agent.txt` |
+| Data Analysis Agent | `agent-workflows/14-data-analysis-agent.txt` |
+| Changelog Generator Agent | `agent-workflows/15-changelog-generator-agent.txt` |
+
+### 🧪 Prompt Evaluation (10 Prompts)
+
+| Prompt | File |
+|--------|------|
+| Evaluation Metrics | `prompt-evaluation/01-evaluation-metrics.txt` |
+| Code Quality Eval | `prompt-evaluation/02-code-quality-eval.txt` |
+| Prompt A/B Testing | `prompt-evaluation/03-prompt-ab-testing.txt` |
+| Response Consistency Eval | `prompt-evaluation/04-response-consistency-eval.txt` |
+| Cost Efficiency Eval | `prompt-evaluation/05-cost-efficiency-eval.txt` |
+| Edge Case Robustness | `prompt-evaluation/06-edge-case-robustness.txt` |
+| Latency Performance Eval | `prompt-evaluation/07-latency-performance-eval.txt` |
+| Domain Accuracy Eval | `prompt-evaluation/08-domain-accuracy-eval.txt` |
+| Hallucination Detection | `prompt-evaluation/09-hallucination-detection.txt` |
+| Instruction Following Eval | `prompt-evaluation/10-instruction-following-eval.txt` |
+
+### 🧩 Context Engineering (10 Prompts)
+
+| Prompt | File |
+|--------|------|
+| Repo Understanding | `context-engineering/01-repo-understanding.txt` |
+| Memory Prompting | `context-engineering/02-memory-prompting.txt` |
+| RAG Context Template | `context-engineering/03-rag-context-template.txt` |
+| Codebase Context Optimization | `context-engineering/04-codebase-context-optimization.txt` |
+| Multi-File Reasoning | `context-engineering/05-multi-file-reasoning.txt` |
+| Context Pruning Strategies | `context-engineering/06-context-pruning-strategies.txt` |
+| Incremental Context Loading | `context-engineering/07-incremental-context-loading.txt` |
+| Error Context Enrichment | `context-engineering/08-error-context-enrichment.txt` |
+| Dynamic Context Adaptation | `context-engineering/09-dynamic-context-adaptation.txt` |
+| Cross-Repository Context | `context-engineering/10-cross-repository-context.txt` |
+
 ---
 
 ## 💡 Example Prompt
@@ -300,7 +350,10 @@ Each prompt is **150–250+ lines** of carefully crafted instructions — encodi
 | **Performance** | 4 | Scalability, load optimization, caching |
 | **Debugging/Quality** | 4 | Refactoring, debugging, testing, tech debt |
 | **Mobile** | 4 | Flutter, React Native, Android, iOS |
-| **Total** | **76** | |
+| **Agent Workflows** | 15 | Step-by-step AI agent systems for complex tasks |
+| **Prompt Evaluation** | 10 | Testing, scoring, and optimizing prompts |
+| **Context Engineering** | 10 | Managing AI context and memory effectively |
+| **Total** | **111** | |
 
 ---
 

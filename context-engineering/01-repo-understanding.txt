@@ -1,0 +1,161 @@
+================================================================================
+PROMPT NAME: Repository Understanding Framework
+DESCRIPTION: Systematic approach for AI to analyze and understand entire
+codebases, including architecture, dependencies, patterns, and conventions.
+USE CASES:
+  - Onboarding AI to new codebases
+  - Generating architecture documentation
+  - Understanding legacy code
+  - Planning refactoring or migrations
+================================================================================
+
+<understanding_process>
+STEP 1: PROJECT STRUCTURE ANALYSIS
+- Identify project type (web app, library, CLI tool, etc.)
+- Map directory structure and organization
+- Locate configuration files (package.json, requirements.txt, etc.)
+- Identify build and deployment files
+- Find documentation (README, docs folder)
+
+STEP 2: DEPENDENCY ANALYSIS
+- List all dependencies and their purposes
+- Identify framework and major libraries
+- Map dependency relationships
+- Check for outdated or vulnerable dependencies
+- Understand version constraints
+
+STEP 3: ENTRY POINT IDENTIFICATION
+- Find main entry points (main.py, index.js, etc.)
+- Identify API routes and endpoints
+- Locate CLI commands
+- Map initialization flow
+
+STEP 4: CODE PATTERN ANALYSIS
+- Identify architectural patterns (MVC, microservices, etc.)
+- Detect design patterns used
+- Understand naming conventions
+- Identify code organization principles
+- Find common abstractions and utilities
+
+STEP 5: DATA FLOW MAPPING
+- Trace data from input to output
+- Identify data models and schemas
+- Map database interactions
+- Understand state management
+- Trace API request/response flow
+
+STEP 6: TESTING STRATEGY
+- Locate test files and frameworks
+- Understand test coverage
+- Identify testing patterns
+- Find CI/CD configuration
+
+STEP 7: DOCUMENTATION SYNTHESIS
+- Summarize project purpose and architecture
+- Document key components and their relationships
+- Identify areas lacking documentation
+- Create mental model of system
+</understanding_process>
+
+<analysis_techniques>
+STATIC ANALYSIS:
+- Read file structure without executing code
+- Parse import/require statements
+- Analyze function signatures and types
+- Identify public APIs vs internal code
+
+PATTERN RECOGNITION:
+- Detect framework conventions (Rails, Django, Express)
+- Identify common patterns (Repository, Factory, Observer)
+- Recognize architectural styles
+- Spot anti-patterns and code smells
+
+DEPENDENCY GRAPH:
+- Build module dependency graph
+- Identify core vs peripheral modules
+- Find circular dependencies
+- Detect tightly coupled components
+
+COMPLEXITY METRICS:
+- Count lines of code per module
+- Measure cyclomatic complexity
+- Identify large files/functions
+- Find deeply nested code
+</analysis_techniques>
+
+<output_format>
+```
+REPOSITORY UNDERSTANDING REPORT
+================================
+
+PROJECT OVERVIEW:
+- Name: [name]
+- Type: [web app / library / CLI / etc.]
+- Primary Language: [language]
+- Framework: [framework]
+- Purpose: [description]
+
+ARCHITECTURE:
+- Pattern: [MVC / microservices / layered / etc.]
+- Key Components:
+  * [Component]: [purpose]
+  * [Component]: [purpose]
+
+DIRECTORY STRUCTURE:
+/src
+  /components - [purpose]
+  /services - [purpose]
+  /utils - [purpose]
+/tests - [testing approach]
+/docs - [documentation]
+
+KEY DEPENDENCIES:
+- [dependency]: [purpose and version]
+
+ENTRY POINTS:
+- [file]: [what it does]
+
+DATA FLOW:
+[Description of how data moves through system]
+
+TESTING:
+- Framework: [Jest / pytest / etc.]
+- Coverage: [percentage]
+- Test Types: [unit / integration / e2e]
+
+CODE CONVENTIONS:
+- Naming: [camelCase / snake_case / etc.]
+- File Organization: [by feature / by type]
+- Error Handling: [approach]
+
+AREAS OF CONCERN:
+- [Technical debt or issues identified]
+
+RECOMMENDATIONS:
+- [Suggestions for improvement]
+```
+</output_format>
+
+<context_optimization>
+WHAT TO INCLUDE IN CONTEXT:
+- Project README and main documentation
+- Key configuration files
+- Main entry points
+- Core business logic files
+- Data models and schemas
+- API route definitions
+
+WHAT TO EXCLUDE:
+- Generated code (build artifacts)
+- Dependencies (node_modules, venv)
+- Large data files
+- Binary files
+- Redundant test fixtures
+
+CONTEXT PRIORITIZATION:
+1. Files directly related to current task
+2. Core abstractions and interfaces
+3. Related utility functions
+4. Relevant tests
+5. Configuration affecting behavior
+</context_optimization>

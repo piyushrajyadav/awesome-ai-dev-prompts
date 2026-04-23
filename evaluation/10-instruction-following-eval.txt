@@ -1,0 +1,132 @@
+================================================================================
+PROMPT NAME: Instruction Following Evaluation
+DESCRIPTION: Framework for measuring how well AI follows specific instructions,
+constraints, and formatting requirements in prompts.
+USE CASES:
+  - Testing prompt clarity and effectiveness
+  - Ensuring output format compliance
+  - Validating constraint adherence
+  - Measuring prompt control
+================================================================================
+
+<evaluation_criteria>
+FORMAT COMPLIANCE:
+- Follows requested structure (JSON, markdown, etc.)
+- Includes all required sections
+- Respects length constraints
+- Uses specified formatting
+
+CONSTRAINT ADHERENCE:
+- Stays within token limits
+- Follows style guidelines
+- Respects prohibited actions
+- Honors scope limitations
+
+COMPLETENESS:
+- Addresses all parts of request
+- Includes required elements
+- Covers specified topics
+- Provides requested examples
+
+ACCURACY:
+- Interprets instructions correctly
+- Follows multi-step directions
+- Handles conditional logic
+- Respects priorities
+</evaluation_criteria>
+
+<scoring_rubric>
+SCORE (0-10):
+10: Perfect instruction following
+8-9: Follows all major instructions, minor deviations
+6-7: Follows most instructions, some missed
+4-5: Partial compliance, significant gaps
+2-3: Poor instruction following
+0-1: Ignores most instructions
+
+DEDUCTION RULES:
+- Missing required section: -2 points
+- Wrong format: -2 points
+- Ignored constraint: -1 point per violation
+- Incomplete response: -3 points
+- Misinterpreted instruction: -2 points
+</scoring_rubric>
+
+<test_scenarios>
+FORMAT TESTS:
+```
+Instruction: "Respond in JSON format with keys: name, age, city"
+Expected: Valid JSON with exactly those keys
+Fail: Plain text, missing keys, extra keys
+
+Instruction: "Provide exactly 3 examples"
+Expected: Exactly 3 examples
+Fail: 2 examples, 4 examples, or vague "several examples"
+
+Instruction: "Keep response under 100 words"
+Expected: 100 words or fewer
+Fail: 150 words
+```
+
+CONSTRAINT TESTS:
+```
+Instruction: "Do not use any external libraries"
+Expected: Pure vanilla code
+Fail: Imports external packages
+
+Instruction: "Explain without using technical jargon"
+Expected: Simple, accessible language
+Fail: Heavy use of technical terms
+
+Instruction: "Focus only on security aspects"
+Expected: Security-focused response
+Fail: Discusses performance, features, etc.
+```
+
+MULTI-STEP TESTS:
+```
+Instruction: "First analyze the code, then suggest improvements, finally provide refactored version"
+Expected: Three distinct sections in order
+Fail: Jumps to refactoring, skips analysis, wrong order
+```
+</test_scenarios>
+
+<output_format>
+```
+INSTRUCTION FOLLOWING REPORT
+=============================
+
+PROMPT TESTED: [description]
+
+OVERALL SCORE: [0-10]
+
+FORMAT COMPLIANCE: [score]/10
+✓ Correct format used
+✗ Missing required section: [name]
+✓ All elements present
+
+CONSTRAINT ADHERENCE: [score]/10
+✓ Stayed within word limit
+✗ Used prohibited library: [name]
+✓ Followed style guide
+
+COMPLETENESS: [score]/10
+✓ Addressed all parts
+✗ Missing: [what was requested but not provided]
+✓ Included examples
+
+ACCURACY: [score]/10
+✓ Correctly interpreted instructions
+✗ Misunderstood: [which instruction]
+✓ Followed multi-step process
+
+VIOLATIONS DETECTED:
+- [Specific instruction not followed]
+
+STRENGTHS:
+- [What was done well]
+
+RECOMMENDATIONS:
+- [How to improve instruction following]
+```
+</output_format>

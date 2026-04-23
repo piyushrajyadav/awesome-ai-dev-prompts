@@ -1,0 +1,180 @@
+================================================================================
+PROMPT NAME: Context Pruning Strategies
+DESCRIPTION: Techniques for intelligently removing less relevant information
+from context to stay within token limits while preserving critical details.
+USE CASES:
+  - Managing large codebases with limited context windows
+  - Optimizing token usage and costs
+  - Maintaining conversation history without overflow
+  - Focusing AI attention on relevant information
+================================================================================
+
+<pruning_techniques>
+1. RECENCY-BASED PRUNING:
+   - Keep most recent N messages/files
+   - Drop oldest content first
+   - Preserve recent context for continuity
+
+2. RELEVANCE-BASED PRUNING:
+   - Score each piece of context by relevance
+   - Keep high-scoring items
+   - Drop low-scoring items regardless of age
+
+3. HIERARCHICAL PRUNING:
+   - Keep detailed recent context
+   - Summarize medium-term context
+   - Keep only key facts from old context
+
+4. SEMANTIC PRUNING:
+   - Remove redundant information
+   - Consolidate similar content
+   - Keep unique information only
+
+5. STRUCTURAL PRUNING:
+   - Keep function signatures, drop implementations
+   - Keep class definitions, drop method bodies
+   - Keep imports and exports, drop internal logic
+</pruning_techniques>
+
+<pruning_rules>
+ALWAYS KEEP:
+- Current task description
+- Files explicitly mentioned by user
+- Error messages and stack traces
+- Recent user corrections or feedback
+- Critical configuration
+
+SAFE TO REMOVE:
+- Duplicate information
+- Boilerplate code
+- Comments (if code is self-explanatory)
+- Whitespace and formatting
+- Completed subtasks
+- Acknowledged information
+
+SUMMARIZE INSTEAD OF REMOVE:
+- Long function implementations
+- Detailed documentation
+- Historical context
+- Background information
+- Related but not critical files
+
+NEVER REMOVE:
+- User's original request
+- Security-critical information
+- Data that affects correctness
+- Unique domain knowledge
+- Active error context
+</pruning_rules>
+
+<pruning_algorithms>
+ALGORITHM 1: TOKEN BUDGET PRUNING
+```
+1. Calculate total tokens needed
+2. If under budget, include all
+3. If over budget:
+   a. Rank all context pieces by importance
+   b. Include highest-ranked until budget reached
+   c. Summarize next tier if space allows
+   d. Drop lowest-ranked items
+```
+
+ALGORITHM 2: SLIDING WINDOW WITH SUMMARIZATION
+```
+1. Keep last N interactions in full detail
+2. Summarize interactions N to 2N
+3. Keep only key facts from interactions > 2N
+4. Drop interactions > 3N entirely
+```
+
+ALGORITHM 3: RELEVANCE DECAY
+```
+1. Score each context piece: base_relevance * decay_factor^age
+2. Sort by score
+3. Include top K items that fit in budget
+4. Summarize next tier
+5. Drop rest
+```
+
+ALGORITHM 4: DEPENDENCY-AWARE PRUNING
+```
+1. Build dependency graph of files
+2. Keep all files in path from entry to target
+3. Prune files not in critical path
+4. Summarize adjacent files
+5. Drop distant files
+```
+</pruning_algorithms>
+
+<implementation_example>
+```python
+def prune_context(context_items, token_budget, current_task):
+    """
+    Intelligently prune context to fit within token budget.
+    """
+    # Score each item
+    scored_items = []
+    for item in context_items:
+        score = calculate_relevance_score(item, current_task)
+        scored_items.append((score, item))
+    
+    # Sort by score (highest first)
+    scored_items.sort(reverse=True, key=lambda x: x[0])
+    
+    # Include items until budget exhausted
+    included = []
+    tokens_used = 0
+    
+    for score, item in scored_items:
+        item_tokens = count_tokens(item)
+        
+        if tokens_used + item_tokens <= token_budget:
+            included.append(item)
+            tokens_used += item_tokens
+        elif tokens_used + item_tokens/2 <= token_budget:
+            # Try summarizing if full version doesn't fit
+            summary = summarize(item)
+            included.append(summary)
+            tokens_used += count_tokens(summary)
+        else:
+            # Skip this item
+            continue
+    
+    return included
+```
+</implementation_example>
+
+<output_format>
+```
+CONTEXT PRUNING REPORT
+=======================
+
+BEFORE PRUNING:
+- Total Items: [count]
+- Total Tokens: [count]
+- Budget: [tokens]
+- Overflow: [tokens over budget]
+
+PRUNING STRATEGY:
+- Method: [algorithm used]
+- Criteria: [what determined keep/remove]
+
+AFTER PRUNING:
+- Items Kept (Full): [count]
+- Items Summarized: [count]
+- Items Removed: [count]
+- Total Tokens: [count]
+- Budget Remaining: [tokens]
+
+ITEMS REMOVED:
+- [item]: [reason for removal]
+
+ITEMS SUMMARIZED:
+- [item]: [original tokens] → [summary tokens]
+
+QUALITY IMPACT:
+- Information Retained: [percentage]
+- Critical Context Preserved: [yes/no]
+- Risk Level: [low/medium/high]
+```
+</output_format>

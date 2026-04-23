@@ -1,0 +1,206 @@
+================================================================================
+PROMPT NAME: Codebase Context Optimization
+DESCRIPTION: Strategies for efficiently loading and managing codebase context
+to maximize AI understanding while staying within token limits.
+USE CASES:
+  - Working with large codebases
+  - Optimizing context for code generation
+  - Reducing token usage while maintaining quality
+  - Smart file selection for context
+================================================================================
+
+<context_selection_strategy>
+PRIORITY LEVELS:
+
+TIER 1 (Always Include):
+- Files directly mentioned by user
+- Current file being edited
+- Main entry points (index.js, main.py)
+- Core configuration files
+
+TIER 2 (High Priority):
+- Files imported by Tier 1 files
+- Related test files
+- Type definitions/interfaces
+- Shared utilities used by target files
+
+TIER 3 (Medium Priority):
+- Files in same directory
+- Similar files (by name/purpose)
+- Recently modified files
+- Documentation files
+
+TIER 4 (Low Priority):
+- Distant dependencies
+- Generated files
+- Third-party code
+- Large data files
+</context_selection_strategy>
+
+<token_budget_management>
+TYPICAL BUDGET ALLOCATION:
+- System prompt: 2,000-5,000 tokens
+- User instructions: 500-2,000 tokens
+- Codebase context: 20,000-50,000 tokens
+- Output buffer: 4,000-8,000 tokens
+
+OPTIMIZATION TECHNIQUES:
+
+1. SELECTIVE FILE LOADING:
+   - Load only relevant functions, not entire files
+   - Use AST parsing to extract specific classes/functions
+   - Skip comments and docstrings if not needed
+
+2. SUMMARIZATION:
+   - Replace large files with structural summaries
+   - Show function signatures instead of implementations
+   - Provide file-level summaries for distant dependencies
+
+3. COMPRESSION:
+   - Remove whitespace and formatting
+   - Minify when understanding doesn't require formatting
+   - Use abbreviated variable names in examples
+
+4. LAZY LOADING:
+   - Start with minimal context
+   - Request additional files only when needed
+   - Iterative context expansion
+</token_budget_management>
+
+<file_relevance_scoring>
+SCORING FACTORS:
+
+Import Distance (40%):
+- Direct import: 1.0
+- 1 hop away: 0.7
+- 2 hops away: 0.4
+- 3+ hops away: 0.2
+
+Recency (20%):
+- Modified today: 1.0
+- This week: 0.8
+- This month: 0.5
+- Older: 0.3
+
+Name Similarity (15%):
+- Exact match: 1.0
+- Contains keyword: 0.7
+- Related term: 0.4
+
+Directory Proximity (15%):
+- Same directory: 1.0
+- Parent/child: 0.7
+- Sibling: 0.5
+- Distant: 0.2
+
+File Type (10%):
+- Source code: 1.0
+- Tests: 0.8
+- Config: 0.6
+- Docs: 0.4
+
+FINAL SCORE: Weighted sum of factors
+</file_relevance_scoring>
+
+<context_assembly_patterns>
+PATTERN 1: FOCUSED CONTEXT
+```
+<target_file>
+[Full content of file being modified]
+</target_file>
+
+<direct_dependencies>
+[Key functions/classes from imported files]
+</direct_dependencies>
+
+<type_definitions>
+[Interfaces and types used]
+</type_definitions>
+```
+
+PATTERN 2: ARCHITECTURAL CONTEXT
+```
+<project_structure>
+[High-level directory tree]
+</project_structure>
+
+<key_files>
+File: src/services/auth.ts
+Purpose: Authentication logic
+Key exports: login(), logout(), verifyToken()
+
+File: src/models/User.ts
+Purpose: User data model
+Key exports: User interface, UserSchema
+</key_files>
+
+<target_code>
+[Specific code to work with]
+</target_code>
+```
+
+PATTERN 3: INCREMENTAL CONTEXT
+```
+<initial_context>
+[Minimal context to start]
+</initial_context>
+
+[AI attempts task]
+
+<additional_context>
+[More files added based on AI's needs]
+</additional_context>
+
+[AI continues with more information]
+```
+</context_assembly_patterns>
+
+<smart_filtering>
+EXCLUDE FROM CONTEXT:
+- node_modules, venv, vendor directories
+- Build artifacts (dist, build, .next)
+- Lock files (package-lock.json, yarn.lock)
+- Binary files (images, videos, PDFs)
+- Large data files (CSVs, JSONs > 100KB)
+- Generated code (protobuf, GraphQL codegen)
+- Minified files
+- Log files
+
+INCLUDE SELECTIVELY:
+- package.json (dependencies section only)
+- Config files (relevant sections)
+- README (summary only)
+- Tests (related to target code)
+</smart_filtering>
+
+<output_format>
+```
+CONTEXT OPTIMIZATION REPORT
+============================
+
+TOKEN BUDGET:
+- Total Available: [tokens]
+- System Prompt: [tokens]
+- User Instructions: [tokens]
+- Codebase Context: [tokens]
+- Output Buffer: [tokens]
+
+FILES INCLUDED:
+Priority  File                          Tokens  Reason
+Tier 1    src/components/Button.tsx     450     Direct target
+Tier 1    src/types/props.ts            200     Type definitions
+Tier 2    src/utils/classNames.ts       150     Imported utility
+Tier 2    src/components/Button.test.tsx 300    Related tests
+
+FILES EXCLUDED:
+- [file]: [reason for exclusion]
+
+OPTIMIZATION APPLIED:
+- [Technique used to fit within budget]
+
+CONTEXT QUALITY SCORE: [0-10]
+- Completeness: [score]
+- Relevance: [score]
+- Efficiency: [score]
+```
+</output_format>

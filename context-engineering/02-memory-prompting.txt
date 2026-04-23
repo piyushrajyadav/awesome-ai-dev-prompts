@@ -1,0 +1,174 @@
+================================================================================
+PROMPT NAME: Memory Prompting Framework
+DESCRIPTION: Techniques for giving AI systems persistent memory across
+conversations, including context management, summarization, and retrieval.
+USE CASES:
+  - Building stateful AI assistants
+  - Maintaining context across long conversations
+  - Personalizing AI responses based on history
+  - Managing context window limits
+================================================================================
+
+<memory_types>
+SHORT-TERM MEMORY (Conversation Buffer):
+- Recent messages in conversation
+- Current task context
+- Immediate working memory
+- Typically last 5-10 exchanges
+
+LONG-TERM MEMORY (Persistent Storage):
+- User preferences and settings
+- Past conversation summaries
+- Learned facts about user/project
+- Historical decisions and outcomes
+
+SEMANTIC MEMORY (Vector Store):
+- Relevant past conversations
+- Similar problems solved before
+- Related documentation
+- Retrieved via similarity search
+
+EPISODIC MEMORY (Event Log):
+- Specific past events
+- Task completion history
+- Error patterns
+- Timestamped interactions
+</memory_types>
+
+<context_management>
+CONTEXT WINDOW STRATEGIES:
+
+1. SLIDING WINDOW:
+   - Keep most recent N messages
+   - Drop oldest when limit reached
+   - Simple but loses long-term context
+
+2. SUMMARIZATION:
+   - Periodically summarize old messages
+   - Replace detailed history with summary
+   - Preserves key information, reduces tokens
+
+3. HIERARCHICAL MEMORY:
+   - Detailed recent memory
+   - Summarized medium-term memory
+   - Key facts from long-term memory
+
+4. SELECTIVE RETENTION:
+   - Keep important messages (decisions, errors)
+   - Drop routine exchanges
+   - Prioritize by relevance to current task
+</context_management>
+
+<memory_prompting_patterns>
+PATTERN 1: EXPLICIT MEMORY INJECTION
+```
+<conversation_history>
+Previous relevant context:
+- User prefers Python over JavaScript
+- Project uses PostgreSQL database
+- Last task: Built authentication system
+</conversation_history>
+
+Current request: [user's new request]
+```
+
+PATTERN 2: SUMMARIZED CONTEXT
+```
+<session_summary>
+Session started: [timestamp]
+Tasks completed: [list]
+Key decisions: [list]
+Current state: [description]
+</session_summary>
+
+New task: [user request]
+```
+
+PATTERN 3: RETRIEVED MEMORIES
+```
+<relevant_past_interactions>
+Similar task from [date]:
+- Problem: [description]
+- Solution: [approach]
+- Outcome: [result]
+</relevant_past_interactions>
+
+Current task: [user request]
+```
+
+PATTERN 4: PROGRESSIVE SUMMARIZATION
+```
+<context_layers>
+Recent (last 5 messages): [detailed]
+Medium-term (last hour): [summarized]
+Long-term (this project): [key facts only]
+</context_layers>
+```
+</memory_prompting_patterns>
+
+<implementation_strategies>
+MEMORY STORAGE:
+- JSON files for simple cases
+- SQLite for structured queries
+- Vector database (Pinecone, Weaviate) for semantic search
+- Redis for fast access to recent context
+
+MEMORY RETRIEVAL:
+- Recency: most recent interactions
+- Relevance: semantic similarity to current task
+- Importance: user-flagged or high-impact items
+- Frequency: often-referenced information
+
+MEMORY UPDATES:
+- After each interaction
+- When user corrects AI
+- When preferences are stated
+- When tasks are completed
+
+MEMORY PRUNING:
+- Remove outdated information
+- Consolidate redundant memories
+- Archive old conversations
+- Respect privacy (delete on request)
+</implementation_strategies>
+
+<output_format>
+```
+MEMORY SYSTEM DESIGN
+====================
+
+MEMORY ARCHITECTURE:
+- Short-term: [implementation]
+- Long-term: [implementation]
+- Semantic: [implementation]
+
+CONTEXT MANAGEMENT:
+- Strategy: [sliding window / summarization / hierarchical]
+- Max context size: [tokens]
+- Summarization trigger: [condition]
+
+RETRIEVAL STRATEGY:
+- Primary: [recency / relevance / importance]
+- Fallback: [strategy]
+- Max memories per request: [count]
+
+STORAGE:
+- Technology: [database / file / vector store]
+- Persistence: [session / permanent]
+- Privacy: [retention policy]
+
+EXAMPLE MEMORY PROMPT:
+[Show how memory is injected into prompts]
+```
+</output_format>
+
+<best_practices>
+1. Always include most recent context (last 2-3 exchanges)
+2. Summarize aggressively to save tokens
+3. Retrieve only relevant memories, not everything
+4. Update memory after significant interactions
+5. Allow users to correct or delete memories
+6. Timestamp all memories for context
+7. Separate facts from opinions/preferences
+8. Test memory retrieval accuracy regularly
+</best_practices>

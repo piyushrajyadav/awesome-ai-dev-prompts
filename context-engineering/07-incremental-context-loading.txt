@@ -1,0 +1,120 @@
+================================================================================
+PROMPT NAME: Incremental Context Loading
+DESCRIPTION: Strategy for progressively loading context as needed rather than
+front-loading everything, reducing initial token usage and improving focus.
+USE CASES:
+  - Working with very large codebases
+  - Exploratory tasks where requirements evolve
+  - Reducing unnecessary context loading
+  - Optimizing for cost and latency
+================================================================================
+
+<incremental_loading_strategy>
+PHASE 1: MINIMAL CONTEXT
+- Load only essential information
+- User's request
+- Directly mentioned files
+- Project type and structure overview
+
+PHASE 2: ATTEMPT TASK
+- AI tries to complete task with minimal context
+- Identifies what additional information is needed
+- Requests specific files or context
+
+PHASE 3: TARGETED EXPANSION
+- Load only the requested additional context
+- Avoid loading entire dependency trees
+- Focus on what's actually needed
+
+PHASE 4: ITERATIVE REFINEMENT
+- Continue task with new context
+- Request more context if still needed
+- Repeat until task complete
+
+BENEFITS:
+- Lower initial token usage
+- Faster initial response
+- More focused AI attention
+- Cost savings on simple tasks
+</incremental_loading_strategy>
+
+<context_request_protocol>
+AI REQUESTS CONTEXT:
+```
+<context_request>
+I need additional information to complete this task:
+
+Files needed:
+- src/utils/validation.ts (need validateEmail function)
+- src/types/user.ts (need User interface definition)
+
+Reason: To implement email validation matching existing patterns
+
+Priority: High (blocking current task)
+</context_request>
+```
+
+SYSTEM PROVIDES CONTEXT:
+```
+<additional_context>
+File: src/utils/validation.ts
+[relevant code]
+
+File: src/types/user.ts
+[relevant code]
+</additional_context>
+```
+
+AI CONTINUES:
+```
+<task_continuation>
+Now with the validation patterns, I can implement...
+</task_continuation>
+```
+</context_request_protocol>
+
+<smart_prefetching>
+PREDICTIVE LOADING:
+- If editing component, preload its test file
+- If modifying API route, preload related controller
+- If changing model, preload migrations
+- If updating config, preload documentation
+
+DEPENDENCY HINTS:
+- Load direct imports automatically
+- Suggest loading related files
+- Offer to load full dependency chain
+- Allow user to approve bulk loading
+</smart_prefetching>
+
+<output_format>
+```
+INCREMENTAL LOADING SESSION
+============================
+
+INITIAL CONTEXT:
+- Tokens loaded: [count]
+- Files included: [list]
+
+ITERATION 1:
+- Task attempted: [description]
+- Context needed: [what was missing]
+- Additional tokens: [count]
+- Files added: [list]
+
+ITERATION 2:
+- Task continued: [progress]
+- Context needed: [if any]
+- Additional tokens: [count]
+
+FINAL STATE:
+- Total iterations: [count]
+- Total tokens used: [count]
+- Task completed: [yes/no]
+
+EFFICIENCY ANALYSIS:
+- Tokens saved vs full load: [count]
+- Percentage reduction: [%]
+- Time to completion: [duration]
+```
+</output_format>

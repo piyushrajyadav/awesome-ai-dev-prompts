@@ -1,0 +1,171 @@
+================================================================================
+PROMPT NAME: Dynamic Context Adaptation
+DESCRIPTION: Techniques for automatically adjusting context based on task
+complexity, user expertise level, and evolving requirements.
+USE CASES:
+  - Adapting to user skill level
+  - Scaling context with task complexity
+  - Personalizing AI responses
+  - Optimizing context for different scenarios
+================================================================================
+
+<adaptation_strategies>
+SKILL-BASED ADAPTATION:
+- Beginner: More explanations, simpler examples, step-by-step
+- Intermediate: Balanced detail, some assumptions
+- Expert: Concise, technical, advanced patterns
+
+TASK-BASED ADAPTATION:
+- Simple task: Minimal context, quick response
+- Medium task: Moderate context, balanced approach
+- Complex task: Comprehensive context, detailed analysis
+
+DOMAIN-BASED ADAPTATION:
+- Familiar domain: Use domain terminology, assume knowledge
+- Unfamiliar domain: Explain concepts, provide background
+- Mixed domain: Balance technical and accessible language
+
+TIME-BASED ADAPTATION:
+- Quick fix: Focus on solution, minimal explanation
+- Learning session: Detailed explanations, educational
+- Exploration: Broad context, multiple approaches
+</adaptation_strategies>
+
+<context_scaling>
+MINIMAL CONTEXT (Simple Tasks):
+```
+<task>Fix typo in variable name</task>
+<context>
+File: utils.js
+Line 42: const usrName = "John";
+</context>
+```
+
+MODERATE CONTEXT (Medium Tasks):
+```
+<task>Add validation to user registration</task>
+<context>
+Current registration function: [code]
+Validation library used: [library]
+Existing validation patterns: [examples]
+Error handling approach: [pattern]
+</context>
+```
+
+COMPREHENSIVE CONTEXT (Complex Tasks):
+```
+<task>Refactor authentication system</task>
+<context>
+Architecture overview: [diagram]
+Current auth flow: [detailed explanation]
+All auth-related files: [code]
+Dependencies: [list with versions]
+Security requirements: [specifications]
+Migration constraints: [limitations]
+Test coverage: [existing tests]
+</context>
+```
+</context_scaling>
+
+<user_profiling>
+INDICATORS OF SKILL LEVEL:
+
+Beginner Signals:
+- Asks basic questions
+- Needs step-by-step guidance
+- Requests explanations of concepts
+- Prefers detailed examples
+
+Expert Signals:
+- Uses technical terminology correctly
+- Asks about edge cases
+- References advanced patterns
+- Wants concise, direct answers
+
+ADAPTATION EXAMPLES:
+
+Beginner Response:
+```
+Let me explain what a Promise is. A Promise represents a value that
+might not be available yet. Here's a simple example:
+
+```javascript
+// This creates a Promise that resolves after 1 second
+const myPromise = new Promise((resolve) => {
+  setTimeout(() => {
+    resolve("Done!");
+  }, 1000);
+});
+```
+
+Expert Response:
+```
+Use Promise.allSettled() for parallel execution with error isolation:
+
+```javascript
+const results = await Promise.allSettled([
+  fetchUser(id),
+  fetchOrders(id),
+  fetchPreferences(id)
+]);
+```
+```
+</user_profiling>
+
+<dynamic_adjustment>
+REAL-TIME ADAPTATION:
+
+Monitor Understanding:
+- Track follow-up questions
+- Detect confusion signals
+- Identify knowledge gaps
+- Adjust complexity accordingly
+
+Feedback Loop:
+```
+User: "I don't understand async/await"
+→ Detect: Knowledge gap
+→ Adapt: Provide simpler explanation with basics
+→ Include: More examples and analogies
+
+User: "Can you show the TypeScript version with generics?"
+→ Detect: Advanced user
+→ Adapt: Provide sophisticated implementation
+→ Include: Type-safe patterns and edge cases
+```
+
+Progressive Disclosure:
+1. Start with simple explanation
+2. Offer to go deeper if needed
+3. Provide advanced details on request
+4. Link to comprehensive resources
+</dynamic_adjustment>
+
+<output_format>
+```
+CONTEXT ADAPTATION PROFILE
+===========================
+
+USER PROFILE:
+- Skill Level: [Beginner/Intermediate/Expert]
+- Domain Familiarity: [High/Medium/Low]
+- Learning Style: [Quick fix/Detailed/Exploratory]
+
+TASK ANALYSIS:
+- Complexity: [Simple/Medium/Complex]
+- Urgency: [High/Medium/Low]
+- Scope: [Narrow/Moderate/Broad]
+
+CONTEXT STRATEGY:
+- Detail Level: [Minimal/Moderate/Comprehensive]
+- Explanation Depth: [Brief/Balanced/Detailed]
+- Example Count: [1-2 / 3-5 / 5+]
+- Technical Level: [Accessible/Mixed/Advanced]
+
+ADAPTATIONS APPLIED:
+- [Specific adjustments made]
+
+RESPONSE STRUCTURE:
+[How the response is organized based on profile]
+```
+</output_format>

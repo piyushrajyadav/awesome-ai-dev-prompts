@@ -1,0 +1,161 @@
+================================================================================
+PROMPT NAME: Prompt A/B Testing Framework
+DESCRIPTION: Systematic framework for comparing different prompt versions to
+determine which produces better outputs across multiple evaluation criteria.
+USE CASES:
+  - Testing prompt variations to find optimal version
+  - Comparing different system prompts
+  - Evaluating prompt engineering techniques
+  - Optimizing prompts for specific tasks
+================================================================================
+
+<ab_testing_methodology>
+STEP 1: DEFINE HYPOTHESIS
+- What are you trying to improve? (accuracy, code quality, speed, cost)
+- What specific change are you testing?
+- What is your success metric?
+
+STEP 2: CREATE VARIANTS
+- Variant A (Control): Current/baseline prompt
+- Variant B (Treatment): Modified prompt with one key change
+- Keep everything else constant (model, temperature, test cases)
+
+STEP 3: DESIGN TEST CASES
+- Create diverse, representative test scenarios
+- Include edge cases and common cases
+- Minimum 20-30 test cases for statistical significance
+- Cover different difficulty levels
+
+STEP 4: RUN EXPERIMENTS
+- Run each test case with both prompts
+- Randomize order to avoid bias
+- Use same model parameters
+- Record all outputs and metadata
+
+STEP 5: EVALUATE RESULTS
+- Score outputs using evaluation rubric
+- Calculate aggregate metrics
+- Perform statistical significance testing
+- Analyze patterns in successes/failures
+
+STEP 6: MAKE DECISION
+- If B significantly better: adopt it
+- If no significant difference: keep A (simpler)
+- If mixed results: analyze which scenarios favor each
+</ab_testing_methodology>
+
+<test_design>
+SAMPLE SIZE:
+- Minimum 20 test cases for directional insights
+- 50+ test cases for statistical confidence
+- 100+ for production deployment decisions
+
+TEST CASE DIVERSITY:
+- Simple tasks (baseline performance)
+- Complex tasks (capability limits)
+- Edge cases (robustness)
+- Ambiguous inputs (handling uncertainty)
+- Different domains (generalization)
+
+CONTROL VARIABLES:
+- Same model and version
+- Same temperature and sampling parameters
+- Same max tokens
+- Same test cases in same order
+- Same evaluation criteria
+</test_design>
+
+<evaluation_metrics>
+QUANTITATIVE METRICS:
+- Success rate: % of tasks completed correctly
+- Average score: mean quality score across all outputs
+- Latency: average response time
+- Token usage: average tokens per response
+- Cost: total API cost for all test cases
+
+QUALITATIVE METRICS:
+- Code quality (if generating code)
+- Clarity of explanations
+- Handling of edge cases
+- Error recovery
+- Consistency across similar tasks
+
+STATISTICAL TESTS:
+- T-test for comparing mean scores
+- Chi-square for success rate differences
+- Effect size (Cohen's d) to measure practical significance
+- Confidence intervals (95% typical)
+</evaluation_metrics>
+
+<prompt_variations_to_test>
+STRUCTURAL CHANGES:
+- Adding/removing examples
+- Changing instruction order
+- Adding constraints or rules
+- Modifying output format requirements
+
+CONTENT CHANGES:
+- Different persona/role descriptions
+- More/less technical language
+- Adding domain-specific context
+- Including/excluding best practices
+
+TECHNIQUE CHANGES:
+- Chain-of-thought vs direct answer
+- Few-shot vs zero-shot
+- Step-by-step vs holistic
+- With/without self-reflection
+</prompt_variations_to_test>
+
+<output_format>
+```
+A/B TEST RESULTS
+================
+
+TEST CONFIGURATION:
+- Variant A: [description]
+- Variant B: [description]
+- Test Cases: [count]
+- Model: [name]
+- Date: [timestamp]
+
+RESULTS SUMMARY:
+                    Variant A    Variant B    Difference
+Success Rate:       [%]          [%]          [+/- %]
+Avg Quality Score:  [0-10]       [0-10]       [+/- points]
+Avg Latency:        [ms]         [ms]         [+/- ms]
+Avg Token Usage:    [count]      [count]      [+/- count]
+Total Cost:         [$]          [$]          [+/- $]
+
+STATISTICAL SIGNIFICANCE:
+- P-value: [value]
+- Significant at 95% confidence: [Yes/No]
+- Effect size (Cohen's d): [value]
+
+WINNER: [A/B/Tie]
+
+DETAILED ANALYSIS:
+Variant B performed better on:
+- [Specific scenario types]
+
+Variant A performed better on:
+- [Specific scenario types]
+
+RECOMMENDATION:
+[Adopt B / Keep A / Run more tests / Hybrid approach]
+
+REASONING:
+[Explanation of decision based on data]
+```
+</output_format>
+
+<best_practices>
+1. Test one change at a time (isolate variables)
+2. Use blind evaluation when possible (hide which variant)
+3. Run multiple iterations to account for randomness
+4. Consider both statistical and practical significance
+5. Document all test parameters for reproducibility
+6. Look for patterns in failures, not just aggregate scores
+7. Consider cost-benefit trade-offs (slight improvement vs 2x cost)
+8. Test on production-like data, not toy examples
+</best_practices>

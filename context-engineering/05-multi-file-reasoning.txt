@@ -1,0 +1,136 @@
+================================================================================
+PROMPT NAME: Multi-File Reasoning Framework
+DESCRIPTION: Techniques for helping AI reason across multiple files to
+understand complex interactions, data flows, and system behavior.
+USE CASES:
+  - Debugging issues spanning multiple files
+  - Understanding feature implementations
+  - Refactoring across file boundaries
+  - Tracing data flow through system
+================================================================================
+
+<reasoning_strategies>
+1. DEPENDENCY CHAIN TRACING:
+   - Start from entry point
+   - Follow imports/calls
+   - Build execution path
+   - Identify key decision points
+
+2. DATA FLOW ANALYSIS:
+   - Track data from source to destination
+   - Identify transformations
+   - Map state changes
+   - Find data dependencies
+
+3. CALL GRAPH CONSTRUCTION:
+   - Map function calls across files
+   - Identify call hierarchy
+   - Find circular dependencies
+   - Detect unused code
+
+4. INTERFACE BOUNDARY ANALYSIS:
+   - Identify module boundaries
+   - Understand contracts between modules
+   - Find coupling points
+   - Detect abstraction leaks
+</reasoning_strategies>
+
+<prompt_structure>
+```
+<task>
+[Description of what needs to be understood]
+</task>
+
+<entry_point>
+File: [filename]
+Function: [function name]
+Purpose: [what it does]
+</entry_point>
+
+<execution_flow>
+Step 1: [entry_point] calls [function] in [file]
+  - Purpose: [why]
+  - Data passed: [what]
+
+Step 2: [function] calls [another_function] in [another_file]
+  - Purpose: [why]
+  - Data transformed: [how]
+
+Step 3: [final step]
+  - Result: [what]
+</execution_flow>
+
+<key_files>
+[Relevant code from each file in the flow]
+</key_files>
+
+<question>
+[Specific question about the multi-file interaction]
+</question>
+```
+</prompt_structure>
+
+<analysis_techniques>
+FORWARD TRACING (Top-Down):
+- Start from user action or API call
+- Follow execution path forward
+- Track data transformations
+- Identify final outcome
+
+BACKWARD TRACING (Bottom-Up):
+- Start from observed behavior or bug
+- Work backwards to find cause
+- Identify all paths that lead there
+- Find root cause
+
+BIDIRECTIONAL TRACING:
+- Start from middle (suspected issue)
+- Trace both forward and backward
+- Understand full context
+- Identify fix location
+
+CROSS-CUTTING CONCERNS:
+- Identify patterns across files
+- Find common utilities
+- Detect repeated logic
+- Suggest refactoring opportunities
+</analysis_techniques>
+
+<output_format>
+```
+MULTI-FILE ANALYSIS REPORT
+===========================
+
+SCOPE:
+- Entry Point: [file and function]
+- Files Analyzed: [count]
+- Execution Depth: [levels]
+
+EXECUTION FLOW:
+1. [file].[function]
+   ↓ calls
+2. [file].[function]
+   ↓ calls
+3. [file].[function]
+   ↓ returns
+4. [result]
+
+DATA TRANSFORMATIONS:
+Input: [data structure]
+  ↓ [transformation in file1]
+Intermediate: [data structure]
+  ↓ [transformation in file2]
+Output: [data structure]
+
+KEY INTERACTIONS:
+- [file1] depends on [file2] for [purpose]
+- [file3] modifies state used by [file4]
+- [file5] and [file6] share [resource]
+
+FINDINGS:
+- [Insights about the multi-file behavior]
+
+RECOMMENDATIONS:
+- [Suggestions for improvement]
+```
+</output_format>

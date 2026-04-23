@@ -1,0 +1,84 @@
+================================================================================
+PROMPT NAME: Response Consistency Evaluation
+DESCRIPTION: Framework for measuring consistency and reliability of AI outputs
+across multiple runs with the same prompt and similar inputs.
+USE CASES:
+  - Testing prompt stability and determinism
+  - Identifying prompts that produce inconsistent outputs
+  - Measuring reliability for production deployment
+  - Detecting temperature/sampling issues
+================================================================================
+
+<consistency_testing>
+METHODOLOGY:
+1. Run same prompt with same input N times (N=10-30)
+2. Measure variance in outputs
+3. Identify patterns vs randomness
+4. Calculate consistency scores
+
+WHAT TO MEASURE:
+- Output format consistency
+- Factual consistency (same facts each time)
+- Quality consistency (similar scores)
+- Length consistency
+- Structural consistency
+
+CONSISTENCY SCORE:
+- 100%: Identical outputs every time
+- 90-99%: Minor variations, core content same
+- 70-89%: Moderate variations, generally consistent
+- 50-69%: Significant variations
+- <50%: Highly inconsistent, unreliable
+</consistency_testing>
+
+<evaluation_metrics>
+FORMAT CONSISTENCY:
+- Does output follow same structure?
+- Are required sections always present?
+- Is formatting (JSON, markdown, etc.) valid?
+
+FACTUAL CONSISTENCY:
+- Are facts/numbers the same across runs?
+- Do explanations contradict each other?
+- Are recommendations consistent?
+
+QUALITY CONSISTENCY:
+- Standard deviation of quality scores
+- Range between best and worst output
+- Coefficient of variation
+
+LENGTH CONSISTENCY:
+- Average token count
+- Standard deviation of length
+- Outlier detection
+</evaluation_metrics>
+
+<output_format>
+```
+CONSISTENCY EVALUATION REPORT
+==============================
+
+Test Configuration:
+- Prompt: [name/description]
+- Runs: [count]
+- Model: [name]
+- Temperature: [value]
+
+CONSISTENCY SCORES:
+- Overall Consistency: [percentage]
+- Format Consistency: [percentage]
+- Factual Consistency: [percentage]
+- Quality Consistency: [percentage]
+
+VARIANCE METRICS:
+- Quality Score: [mean] ± [std dev]
+- Output Length: [mean] ± [std dev] tokens
+- Outliers Detected: [count]
+
+ISSUES FOUND:
+- [Description of inconsistencies]
+
+RECOMMENDATION:
+[Reliable for production / Needs refinement / Adjust temperature]
+```
+</output_format>

@@ -1,0 +1,83 @@
+================================================================================
+PROMPT NAME: Cost Efficiency Evaluation
+DESCRIPTION: Framework for evaluating the cost-effectiveness of prompts by
+measuring token usage, API costs, and value delivered per dollar spent.
+USE CASES:
+  - Optimizing prompts to reduce API costs
+  - Comparing cost vs quality trade-offs
+  - Budgeting for production deployments
+  - Identifying expensive prompt patterns
+================================================================================
+
+<cost_metrics>
+TOKEN USAGE:
+- Input tokens per request
+- Output tokens per request
+- Total tokens per task
+- Token efficiency (value per token)
+
+API COSTS:
+- Cost per request
+- Cost per completed task
+- Cost per user session
+- Monthly projected costs at scale
+
+EFFICIENCY RATIOS:
+- Cost per successful output
+- Quality score per dollar
+- Tasks completed per $100
+- ROI (value delivered vs cost)
+</cost_metrics>
+
+<optimization_strategies>
+REDUCE INPUT TOKENS:
+- Remove unnecessary context
+- Use shorter system prompts
+- Compress examples
+- Reference external docs instead of including
+
+REDUCE OUTPUT TOKENS:
+- Request concise responses
+- Use structured formats (JSON vs prose)
+- Set max_tokens appropriately
+- Avoid verbose explanations when not needed
+
+IMPROVE SUCCESS RATE:
+- Better prompts = fewer retries
+- Clear instructions = correct first time
+- Validation = catch errors early
+
+USE CHEAPER MODELS:
+- Test if smaller models work for task
+- Use tiered approach (cheap model first, expensive if needed)
+- Cache common responses
+</optimization_strategies>
+
+<output_format>
+```
+COST EFFICIENCY REPORT
+=======================
+
+COST BREAKDOWN:
+- Avg Input Tokens: [count]
+- Avg Output Tokens: [count]
+- Avg Cost per Request: $[amount]
+- Success Rate: [percentage]
+- Avg Cost per Success: $[amount]
+
+PROJECTED COSTS:
+- 1K requests/month: $[amount]
+- 10K requests/month: $[amount]
+- 100K requests/month: $[amount]
+
+EFFICIENCY METRICS:
+- Quality Score per Dollar: [score/$]
+- Tasks per $100: [count]
+
+OPTIMIZATION OPPORTUNITIES:
+- [Specific suggestions to reduce cost]
+
+COST vs QUALITY TRADE-OFF:
+[Analysis of whether cost is justified by quality]
+```
+</output_format>

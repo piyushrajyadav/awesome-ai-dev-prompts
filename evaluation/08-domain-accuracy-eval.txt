@@ -1,0 +1,123 @@
+================================================================================
+PROMPT NAME: Domain Accuracy Evaluation
+DESCRIPTION: Framework for evaluating how accurately AI outputs adhere to
+domain-specific knowledge, standards, and best practices.
+USE CASES:
+  - Validating technical accuracy of generated code
+  - Checking compliance with industry standards
+  - Verifying framework-specific conventions
+  - Assessing domain expertise quality
+================================================================================
+
+<evaluation_dimensions>
+TECHNICAL CORRECTNESS:
+- Syntax validity
+- Type safety
+- Logic correctness
+- Algorithm appropriateness
+- API usage correctness
+
+FRAMEWORK CONVENTIONS:
+- Follows framework patterns
+- Uses idiomatic code
+- Respects framework lifecycle
+- Proper dependency injection
+- Correct configuration
+
+INDUSTRY STANDARDS:
+- Follows language style guides
+- Adheres to design patterns
+- Implements security best practices
+- Meets accessibility standards
+- Complies with regulations (GDPR, etc.)
+
+DOMAIN KNOWLEDGE:
+- Uses correct terminology
+- Applies domain patterns
+- Understands business rules
+- Recognizes edge cases
+- Knows common pitfalls
+</evaluation_dimensions>
+
+<accuracy_scoring>
+SCORE (0-10):
+10: Perfect domain accuracy, expert-level
+8-9: Highly accurate, minor gaps
+6-7: Generally accurate, some mistakes
+4-5: Multiple inaccuracies
+2-3: Significant domain errors
+0-1: Fundamentally incorrect
+
+EVALUATION CRITERIA:
+- Would a domain expert approve this?
+- Does it follow established patterns?
+- Are there any dangerous mistakes?
+- Is terminology used correctly?
+- Are edge cases handled properly?
+</accuracy_scoring>
+
+<domain_specific_checks>
+WEB DEVELOPMENT:
+- Proper HTTP methods (GET for reads, POST for creates)
+- Correct status codes (200, 201, 400, 404, 500)
+- CORS configuration
+- Security headers
+- RESTful design principles
+
+REACT/FRONTEND:
+- Proper hook usage (rules of hooks)
+- Component lifecycle understanding
+- State management patterns
+- Performance optimizations
+- Accessibility attributes
+
+DATABASE:
+- Proper indexing strategies
+- Transaction handling
+- N+1 query prevention
+- Data normalization
+- Constraint usage
+
+SECURITY:
+- Input validation
+- Output encoding
+- Authentication/authorization
+- Secure password handling
+- HTTPS enforcement
+</domain_specific_checks>
+
+<output_format>
+```
+DOMAIN ACCURACY REPORT
+=======================
+
+DOMAIN: [specific domain/framework]
+OUTPUT EVALUATED: [description]
+
+OVERALL ACCURACY SCORE: [0-10]
+
+TECHNICAL CORRECTNESS: [score]/10
+- [Specific findings]
+
+FRAMEWORK CONVENTIONS: [score]/10
+- [Specific findings]
+
+INDUSTRY STANDARDS: [score]/10
+- [Specific findings]
+
+DOMAIN KNOWLEDGE: [score]/10
+- [Specific findings]
+
+CRITICAL ERRORS:
+- [Dangerous or fundamentally wrong aspects]
+
+MINOR ISSUES:
+- [Non-critical inaccuracies]
+
+EXPERT REVIEW:
+[Would a domain expert approve this? Why or why not?]
+
+RECOMMENDATIONS:
+- [How to improve domain accuracy]
+```
+</output_format>

@@ -1,0 +1,182 @@
+================================================================================
+PROMPT NAME: Error Context Enrichment
+DESCRIPTION: Techniques for providing rich context around errors to help AI
+quickly diagnose and fix issues.
+USE CASES:
+  - Debugging runtime errors
+  - Fixing compilation errors
+  - Resolving test failures
+  - Troubleshooting deployment issues
+================================================================================
+
+<error_context_structure>
+ESSENTIAL ERROR INFORMATION:
+- Error message (full text)
+- Stack trace (complete)
+- Error type/code
+- Timestamp
+- Environment (dev/staging/prod)
+
+CODE CONTEXT:
+- File where error occurred
+- Surrounding code (±10 lines)
+- Function/method containing error
+- Related functions in call stack
+
+EXECUTION CONTEXT:
+- Input that triggered error
+- Variable values at error point
+- Application state
+- Recent changes to code
+
+ENVIRONMENTAL CONTEXT:
+- Runtime version
+- Dependencies versions
+- Configuration values
+- System resources
+</error_context_structure>
+
+<context_enrichment_techniques>
+STACK TRACE ENRICHMENT:
+```
+<error>
+TypeError: Cannot read property 'name' of undefined
+  at getUserName (src/utils/user.ts:45:20)
+  at renderProfile (src/components/Profile.tsx:12:15)
+  at App (src/App.tsx:28:10)
+</error>
+
+<enriched_context>
+File: src/utils/user.ts (line 45)
+```typescript
+export function getUserName(user: User): string {
+  // Line 45 - Error occurs here
+  return user.name.toUpperCase();
+  //     ^^^^ user is undefined
+}
+```
+
+File: src/components/Profile.tsx (line 12)
+```typescript
+const Profile = ({ userId }: Props) => {
+  const user = useUser(userId); // May return undefined
+  // Line 12 - Calls getUserName without null check
+  const name = getUserName(user);
+  return <div>{name}</div>;
+}
+```
+
+Root Cause: getUserName called with undefined user
+Fix: Add null check before accessing user.name
+</enriched_context>
+```
+
+COMPILATION ERROR ENRICHMENT:
+```
+<error>
+TS2339: Property 'email' does not exist on type 'User'
+  at src/components/UserCard.tsx:15:20
+</error>
+
+<enriched_context>
+Current User type definition:
+```typescript
+interface User {
+  id: string;
+  name: string;
+  // email property is missing
+}
+```
+
+Usage attempting to access email:
+```typescript
+const UserCard = ({ user }: { user: User }) => {
+  return <div>{user.email}</div>; // Error here
+}
+```
+
+Possible fixes:
+1. Add email to User interface
+2. Use optional chaining: user.email?
+3. Check if wrong type is being used
+</enriched_context>
+```
+
+TEST FAILURE ENRICHMENT:
+```
+<error>
+Expected: 200
+Received: 404
+  at tests/api/users.test.ts:25:10
+</error>
+
+<enriched_context>
+Test code:
+```typescript
+test('GET /api/users/:id returns user', async () => {
+  const response = await request(app).get('/api/users/123');
+  expect(response.status).toBe(200); // Fails here
+});
+```
+
+API route definition:
+```typescript
+app.get('/api/user/:id', getUser); // Note: 'user' not 'users'
+```
+
+Root Cause: URL mismatch - route is /api/user/:id but test calls /api/users/:id
+Fix: Change route to /api/users/:id or update test
+</enriched_context>
+```
+</error_context_enrichment_techniques>
+
+<automated_context_gathering>
+ON ERROR DETECTION:
+1. Capture full error details
+2. Load file where error occurred
+3. Load files in stack trace
+4. Load related test files
+5. Check recent git commits
+6. Gather relevant logs
+7. Check similar past errors
+
+CONTEXT PRIORITIZATION:
+- Immediate error location (highest priority)
+- Call stack files
+- Recently modified files
+- Related configuration
+- Dependency versions
+</automated_context_gathering>
+
+<output_format>
+```
+ERROR DIAGNOSIS REPORT
+======================
+
+ERROR SUMMARY:
+Type: [error type]
+Message: [error message]
+Location: [file:line:column]
+Timestamp: [when]
+
+STACK TRACE:
+[Full stack trace with file context]
+
+ROOT CAUSE ANALYSIS:
+[Explanation of why error occurred]
+
+AFFECTED CODE:
+[Relevant code sections with annotations]
+
+PROPOSED FIX:
+```[language]
+[Code fix with before/after]
+```
+
+TESTING RECOMMENDATION:
+[How to verify fix works]
+
+PREVENTION:
+[How to prevent similar errors]
+```
+</output_format>

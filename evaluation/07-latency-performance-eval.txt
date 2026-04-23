@@ -1,0 +1,125 @@
+================================================================================
+PROMPT NAME: Latency & Performance Evaluation
+DESCRIPTION: Framework for measuring and optimizing prompt response times,
+throughput, and overall system performance.
+USE CASES:
+  - Optimizing prompts for production latency requirements
+  - Identifying performance bottlenecks
+  - Comparing prompt efficiency
+  - Meeting SLA requirements
+================================================================================
+
+<performance_metrics>
+LATENCY METRICS:
+- Time to First Token (TTFT): How quickly response starts
+- Time per Output Token: Generation speed
+- Total Response Time: End-to-end latency
+- P50, P95, P99 latencies: Distribution analysis
+
+THROUGHPUT METRICS:
+- Requests per second
+- Tokens per second
+- Concurrent request capacity
+- Queue wait time
+
+EFFICIENCY METRICS:
+- Tokens per second per dollar
+- Latency per 1K tokens
+- Cache hit rate
+- Retry rate
+</performance_metrics>
+
+<optimization_strategies>
+REDUCE INPUT TOKENS:
+- Shorter system prompts
+- Compressed context
+- Remove redundant information
+- Use references instead of full text
+
+REDUCE OUTPUT TOKENS:
+- Set appropriate max_tokens
+- Request concise responses
+- Use structured formats
+- Stream responses for perceived speed
+
+IMPROVE CACHING:
+- Cache common prompts
+- Reuse system prompts
+- Cache embeddings
+- Use prompt caching features
+
+PARALLEL PROCESSING:
+- Batch independent requests
+- Use async/await
+- Implement request pooling
+- Load balance across endpoints
+</optimization_strategies>
+
+<benchmarking_protocol>
+TEST SETUP:
+1. Define test scenarios (simple, medium, complex)
+2. Create representative test cases (N=50+)
+3. Control variables (model, temperature, etc.)
+4. Measure baseline performance
+5. Run tests multiple times for consistency
+
+MEASUREMENT:
+- Record start and end timestamps
+- Track token counts (input/output)
+- Monitor API rate limits
+- Log errors and retries
+- Measure under different loads
+
+ANALYSIS:
+- Calculate mean, median, std dev
+- Identify outliers
+- Find performance patterns
+- Compare against SLA targets
+</benchmarking_protocol>
+
+<output_format>
+```
+PERFORMANCE EVALUATION REPORT
+==============================
+
+TEST CONFIGURATION:
+- Prompt: [name]
+- Model: [name]
+- Test Cases: [count]
+- Date: [timestamp]
+
+LATENCY RESULTS:
+- Mean Response Time: [ms]
+- Median (P50): [ms]
+- P95: [ms]
+- P99: [ms]
+- Min: [ms]
+- Max: [ms]
+
+THROUGHPUT:
+- Requests/second: [count]
+- Tokens/second: [count]
+- Concurrent capacity: [count]
+
+TOKEN EFFICIENCY:
+- Avg Input Tokens: [count]
+- Avg Output Tokens: [count]
+- Total Tokens: [count]
+- Tokens/second: [rate]
+
+COST EFFICIENCY:
+- Cost per request: $[amount]
+- Tokens per dollar: [count]
+
+SLA COMPLIANCE:
+- Target: [requirement]
+- Actual: [measurement]
+- Pass/Fail: [status]
+
+BOTTLENECKS IDENTIFIED:
+- [Description of performance issues]
+
+OPTIMIZATION RECOMMENDATIONS:
+- [Specific suggestions to improve performance]
+```
+</output_format>

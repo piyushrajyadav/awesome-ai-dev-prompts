@@ -1,0 +1,202 @@
+================================================================================
+PROMPT NAME: Cross-Repository Context Management
+DESCRIPTION: Strategies for managing context when working across multiple
+related repositories, microservices, or codebases.
+USE CASES:
+  - Microservices architecture development
+  - Monorepo management
+  - Multi-repo feature development
+  - System-wide refactoring
+================================================================================
+
+<multi_repo_challenges>
+COMMON ISSUES:
+- Context scattered across repositories
+- Shared dependencies and contracts
+- Version synchronization
+- Cross-repo data flow
+- Distributed testing
+
+CONTEXT REQUIREMENTS:
+- Understanding service boundaries
+- API contracts between services
+- Shared types and interfaces
+- Configuration dependencies
+- Deployment relationships
+</multi_repo_challenges>
+
+<context_organization>
+REPOSITORY MAP:
+```
+<system_architecture>
+Service: user-service (repo: user-api)
+- Responsibilities: User management, authentication
+- Exposes: REST API on port 3001
+- Depends on: auth-service, database
+
+Service: order-service (repo: order-api)
+- Responsibilities: Order processing
+- Exposes: REST API on port 3002
+- Depends on: user-service, payment-service
+
+Service: payment-service (repo: payment-api)
+- Responsibilities: Payment processing
+- Exposes: REST API on port 3003
+- Depends on: External payment gateway
+
+Shared: common-types (repo: shared-types)
+- Provides: TypeScript interfaces
+- Used by: All services
+</system_architecture>
+```
+
+INTERFACE CONTRACTS:
+```
+<api_contracts>
+user-service → order-service:
+GET /api/users/:id
+Response: { id, name, email, tier }
+
+order-service → payment-service:
+POST /api/payments
+Request: { orderId, amount, currency }
+Response: { transactionId, status }
+</api_contracts>
+```
+</context_organization>
+
+<context_loading_strategy>
+FOCUSED APPROACH:
+1. Identify primary repository for current task
+2. Load relevant files from primary repo
+3. Load interface definitions from related repos
+4. Include API contracts and shared types
+5. Add configuration that affects interaction
+
+EXAMPLE:
+```
+<task>Add order validation in order-service</task>
+
+<primary_context>
+Repository: order-api
+Files:
+- src/services/orderService.ts (current implementation)
+- src/validators/orderValidator.ts (existing validation)
+- src/types/order.ts (order types)
+</primary_context>
+
+<related_context>
+Repository: shared-types
+Files:
+- src/User.ts (User interface used in validation)
+
+Repository: user-api
+Files:
+- API contract: GET /api/users/:id (to verify user exists)
+</related_context>
+
+<configuration>
+- Environment variables affecting validation
+- Feature flags for validation rules
+</configuration>
+```
+</context_loading_strategy>
+
+<dependency_tracking>
+CROSS-REPO DEPENDENCIES:
+
+Type Dependencies:
+```
+order-service imports from shared-types:
+- User interface
+- Product interface
+- OrderStatus enum
+```
+
+API Dependencies:
+```
+order-service calls user-service:
+- GET /api/users/:id (verify user)
+- GET /api/users/:id/tier (check user tier)
+
+order-service calls payment-service:
+- POST /api/payments (process payment)
+```
+
+Configuration Dependencies:
+```
+order-service requires:
+- USER_SERVICE_URL from environment
+- PAYMENT_SERVICE_URL from environment
+- Shared database connection string
+```
+</dependency_tracking>
+
+<change_impact_analysis>
+CROSS-REPO IMPACT:
+
+Scenario: Change User interface in shared-types
+```
+<impact_analysis>
+Changed: shared-types/src/User.ts
+- Added field: phoneNumber
+
+Affected Repositories:
+1. user-api
+   - Files: src/models/User.ts (needs update)
+   - Tests: tests/user.test.ts (needs new test)
+
+2. order-api
+   - Files: src/services/orderService.ts (may use new field)
+   - Impact: Low (optional field)
+
+3. notification-service
+   - Files: src/notifiers/sms.ts (can now use phoneNumber)
+   - Impact: Medium (new feature enabled)
+
+Migration Required:
+- Update shared-types version in all services
+- Deploy in order: shared-types → user-api → order-api → notification-service
+</impact_analysis>
+```
+</change_impact_analysis>
+
+<output_format>
+```
+CROSS-REPOSITORY CONTEXT REPORT
+================================
+
+TASK: [description]
+
+PRIMARY REPOSITORY:
+- Name: [repo-name]
+- Files loaded: [count]
+- Context tokens: [count]
+
+RELATED REPOSITORIES:
+Repository: [name]
+- Relationship: [depends on / depended by / shared]
+- Files loaded: [list]
+- Interfaces used: [list]
+
+CROSS-REPO DEPENDENCIES:
+- Type imports: [list]
+- API calls: [list]
+- Shared config: [list]
+
+CHANGE IMPACT:
+- Repositories affected: [count]
+- Breaking changes: [yes/no]
+- Migration required: [yes/no]
+
+DEPLOYMENT ORDER:
+1. [repo-name]
+2. [repo-name]
+3. [repo-name]
+
+TESTING STRATEGY:
+- Unit tests: [per repo]
+- Integration tests: [cross-repo]
+- E2E tests: [full system]
+```
+</output_format>

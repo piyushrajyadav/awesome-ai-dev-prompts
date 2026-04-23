@@ -1,0 +1,161 @@
+================================================================================
+PROMPT NAME: Hallucination Detection Framework
+DESCRIPTION: Methods for detecting when AI generates false, fabricated, or
+unverifiable information instead of accurate responses.
+USE CASES:
+  - Validating factual accuracy of AI outputs
+  - Detecting made-up APIs or functions
+  - Identifying false documentation references
+  - Ensuring reliability for production use
+================================================================================
+
+<hallucination_types>
+FACTUAL HALLUCINATIONS:
+- Made-up statistics or numbers
+- False historical facts
+- Incorrect technical specifications
+- Fabricated research citations
+
+CODE HALLUCINATIONS:
+- Non-existent APIs or functions
+- Incorrect function signatures
+- Made-up library methods
+- Invalid configuration options
+
+DOCUMENTATION HALLUCINATIONS:
+- Links to non-existent pages
+- False feature claims
+- Incorrect version information
+- Made-up best practices
+
+LOGICAL HALLUCINATIONS:
+- Contradictory statements
+- Impossible scenarios
+- Circular reasoning
+- Inconsistent explanations
+</hallucination_types>
+
+<detection_methods>
+AUTOMATED CHECKS:
+- Verify API/function existence in documentation
+- Check links return 200 status
+- Validate code syntax and compilation
+- Cross-reference with official docs
+- Test code execution
+
+CONSISTENCY CHECKS:
+- Compare multiple generations of same prompt
+- Check for internal contradictions
+- Verify facts across different responses
+- Look for confidence hedging ("might", "possibly")
+
+VERIFICATION STRATEGIES:
+- Run generated code to see if it works
+- Check official documentation
+- Search for mentioned features/APIs
+- Validate against known facts
+- Test with real data
+
+RED FLAGS:
+- Overly specific details without source
+- Confident statements about uncertain things
+- Made-up version numbers or dates
+- References to non-existent resources
+- Code that looks plausible but doesn't work
+</detection_methods>
+
+<hallucination_scoring>
+SEVERITY LEVELS:
+
+CRITICAL (Dangerous):
+- Security vulnerabilities from false info
+- Data loss from incorrect code
+- System failures from bad configuration
+- Legal issues from false compliance claims
+
+HIGH (Misleading):
+- Non-working code that looks correct
+- False API documentation
+- Incorrect best practices
+- Made-up framework features
+
+MEDIUM (Confusing):
+- Minor factual errors
+- Outdated information presented as current
+- Ambiguous statements
+- Unverified claims
+
+LOW (Harmless):
+- Uncertain phrasing
+- Overgeneralization
+- Minor inconsistencies
+- Speculation clearly marked
+</hallucination_scoring>
+
+<output_format>
+```
+HALLUCINATION DETECTION REPORT
+===============================
+
+OUTPUT ANALYZED: [description]
+
+HALLUCINATION SCORE: [0-10]
+(0 = completely fabricated, 10 = fully accurate)
+
+HALLUCINATIONS DETECTED:
+
+CRITICAL:
+- [Dangerous false information]
+
+HIGH:
+- [Misleading but not dangerous]
+
+MEDIUM:
+- [Confusing or unclear]
+
+LOW:
+- [Minor issues]
+
+VERIFICATION RESULTS:
+- APIs/Functions checked: [count]
+- Valid: [count]
+- Invalid: [count]
+- Links checked: [count]
+- Working: [count]
+- Broken: [count]
+
+CONFIDENCE ASSESSMENT:
+- Appropriate hedging: [yes/no]
+- Overconfident claims: [count]
+- Unverified assertions: [count]
+
+RECOMMENDATION:
+[Safe to use / Needs verification / Do not use]
+
+CORRECTED VERSION:
+[Accurate version of the output if hallucinations found]
+```
+</output_format>
+
+<prevention_strategies>
+PROMPT ENGINEERING:
+- Request citations for facts
+- Ask for uncertainty acknowledgment
+- Require "I don't know" when appropriate
+- Request verification steps
+- Limit speculation
+
+SYSTEM DESIGN:
+- Implement fact-checking layer
+- Use RAG for grounded responses
+- Add verification tools
+- Enable web search for current info
+- Maintain knowledge cutoff awareness
+
+POST-GENERATION:
+- Automated verification checks
+- Human review for critical outputs
+- Test generated code
+- Validate links and references
+- Cross-check facts
+</prevention_strategies>
